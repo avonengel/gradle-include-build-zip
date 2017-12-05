@@ -1,0 +1,19 @@
+plugins {
+    id 'base'
+    id 'maven-publish'
+}
+
+group "test"
+version "0.1.0"
+
+task zipSomething(type: Zip) {
+    from 'build.gradle'
+}
+
+publishing {
+    publications {
+        theZip(MavenPublication) {
+            artifact zipSomething
+        }
+    }
+}

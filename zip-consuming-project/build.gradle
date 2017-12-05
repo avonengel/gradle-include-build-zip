@@ -1,0 +1,23 @@
+plugins {
+    id 'base'
+}
+configurations {
+    dummy
+}
+repositories {
+    mavenLocal()
+}
+dependencies {
+    dummy 'test:zip-producing-project:0.1.0@zip'
+}
+
+task unzip(type: Sync) {
+    dependsOn configurations.dummy
+
+    from { // use of closure defers evaluation until execution time
+        configurations.dummy.collect {
+            zipTree(it)
+        }
+    }
+    into 'build/unzip'
+}
