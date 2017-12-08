@@ -8,7 +8,9 @@ repositories {
     mavenLocal()
 }
 dependencies {
-    dummy 'test:zip-producing-project:0.1.0@zip'
+    dummy('test:zip-producing-project:0.1.0@zip') {
+        targetConfiguration = 'archives' // does not work without this line
+    }
 }
 
 task unzip(type: Sync) {
