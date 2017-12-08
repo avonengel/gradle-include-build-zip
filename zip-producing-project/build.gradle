@@ -10,6 +10,10 @@ task zipSomething(type: Zip) {
     from 'build.gradle'
 }
 
+artifacts {
+    archives zipSomething
+}
+
 publishing {
     publications {
         theZip(MavenPublication) {
